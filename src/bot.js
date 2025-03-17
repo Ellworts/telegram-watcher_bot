@@ -66,7 +66,7 @@ bot.command("post", async (ctx) => {
         return ctx.reply("⚠️ Пожалуйста, укажите текст после команды /post.");
     }
 
-    const prompt = `Translate my text from Russian to English, separating them into two parts with '///' as the delimiter. Example:\n\nРусский текст\n\n///\n\nEnglish text.\n\nТекст: ${messageText}`;
+    const prompt = `Translate my text from Russian to English, separating them into two parts with '///' as the delimiter. !!IMPORTANT: ALWAYS MAKE TWO LINE BREAKS \n\n BETWEEN TRANSLATIONS!! Example: Русский текст\n\n///\n\nEnglish text. DO IT WITH THAT TEXT: ${messageText}`;
     const processedMessage = await getChatGptResponse(prompt);
 
     if (processedMessage) {
