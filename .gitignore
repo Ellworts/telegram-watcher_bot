@@ -1,0 +1,4 @@
+node_modules/
+database/posts.db
+.env
+src/telebot-watcher-firebase-adminsdk-fbsvc-780d9431be.json
