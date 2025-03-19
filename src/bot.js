@@ -26,7 +26,6 @@ const bot = new Telegraf(BOT_TOKEN);
 const allowedUserId = 753599659;
 const channelId = "@mxrgtm";
 
-
 async function getChatGptResponse(prompt) {
     try {
         const response = await axios.post(
@@ -66,11 +65,14 @@ bot.command("post", async (ctx) => {
         return ctx.reply("⚠️ Пожалуйста, укажите текст после команды /post.");
     }
 
-    const prompt = `Translate my text from Russian to English, separating them into two parts with '///' as the delimiter. !!IMPORTANT: ALWAYS MAKE TWO LINE BREAKS \n\n BETWEEN TRANSLATIONS!! Example: Русский текст\n\n///\n\nEnglish text. DO IT WITH THAT TEXT: ${messageText}`;
-    const processedMessage = await getChatGptResponse(prompt);
+    const prompt = `Translate this Russian text to English: ${messageText}`;
+    const englishTranslation = await getChatGptResponse(prompt);
 
-    if (processedMessage) {
-        bot.telegram.sendMessage(channelId, processedMessage)
+    if (englishTranslation) {
+        // Формируем итоговое сообщение без лишних фраз
+        const formattedMessage = `${messageText}\n\n///\n\n${englishTranslation}`;
+
+        bot.telegram.sendMessage(channelId, formattedMessage)
             .then((sentMessage) => {
                 console.log(`✅ Сообщение отправлено в канал.`);
 
