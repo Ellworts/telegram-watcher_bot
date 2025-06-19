@@ -3,6 +3,8 @@ const admin = require("firebase-admin");
 const axios = require("axios");
 const { BOT_TOKEN, OPENAI_API_KEY } = require("./config");
 
+const port = process.env.PORT || 3000
+
 const serviceAccount = {
   type: "service_account",
   private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
